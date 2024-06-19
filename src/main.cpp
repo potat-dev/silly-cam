@@ -2,7 +2,6 @@
 
 #include "camera.hpp"
 #include "config.hpp"
-#include "secrets.hpp"
 
 #define TAKE_PHOTO "take a photo"
 
