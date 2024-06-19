@@ -1,10 +1,6 @@
 #include <Arduino.h>
 
-#define WIFI_SSID "ssid"
-#define WIFI_PASS "pass"
-
-#define BOT_TOKEN "123:456"
-#define CHAT_ID "123"
+#include "secrets.hpp"
 
 #define TAKE_PHOTO "take a photo"
 
@@ -43,13 +39,14 @@ camera_config_t config;
 #include <FastBot.h>
 FastBot bot(BOT_TOKEN);
 
+#define FASTLED_INTERNAL
 #include <FastLED.h>
 #include <EncButton.h>
 
 #define LED_PIN 13
 #define BTN_PIN 12
 #define NUM_LEDS 8
-#define BRIGHTNESS 64
+#define BRIGHTNESS 200
 #define LED_TYPE WS2811
 #define COLOR_ORDER GRB
 
@@ -114,7 +111,7 @@ void takeSavePhoto() {
     return;
   }
 
-  bot.sendFile((byte*)frame->buf, frame->len, FB_PHOTO, "photo.jpg", CHAT_ID);
+  bot.sendFile((byte*)frame->buf, frame->len, FB_PHOTO, "photo.jpg", CLIENT_ID);
 
   Serial.printf("Image sent!");
 
@@ -147,8 +144,8 @@ void configInitCamera() {
   config.pin_pclk = PCLK_GPIO_NUM;
   config.pin_vsync = VSYNC_GPIO_NUM;
   config.pin_href = HREF_GPIO_NUM;
-  config.pin_sscb_sda = SIOD_GPIO_NUM;
-  config.pin_sscb_scl = SIOC_GPIO_NUM;
+  config.pin_sccb_sda = SIOD_GPIO_NUM;
+  config.pin_sccb_scl = SIOC_GPIO_NUM; 
   config.pin_pwdn = PWDN_GPIO_NUM;
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 24000000;
@@ -219,7 +216,7 @@ void setup() {
   configInitCamera();
   Serial.println("Ok!");
 
-  bot.setChatID(CHAT_ID);
+  bot.setChatID(CLIENT_ID);
   bot.attach(newMsg);
   bot.showMenuText("camera restarted", TAKE_PHOTO);
 
