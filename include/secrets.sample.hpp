@@ -1,3 +1,5 @@
+#pragma once
+
 // Super Duper Secret Configs - WiFi and Bot secrets
 // Rename this file to secrets.hpp in the include directory
 // DO NOT COMMIT THIS FILE! Keep it in the .gitignore
