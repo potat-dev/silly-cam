@@ -1,8 +1,9 @@
 #pragma once
 
-#define LED_PIN 13
 #define BTN_PIN 12
-#define NUM_LEDS 8
+#define LED_PIN 13
+#define LED_COUNT 8
+#define LED_BRIGHTNESS 200
 
 #define WIFI_SSID "YOUR_WIFI_SSID"
 #define WIFI_PASS "YOUR_WIFI_PASS"
